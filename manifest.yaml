@@ -1,0 +1,128 @@
+---
+{
+  "apiVersion": "apiextensions.k8s.io/v1beta1",
+  "kind": "CustomResourceDefinition",
+  "metadata": {
+    "labels": {
+      "k8s-app": "eviction-operator"
+    },
+    "name": "evictionpolicies.eviction-operator.bonny.run"
+  },
+  "spec": {
+    "additionalPrinterColumns": [],
+    "group": "eviction-operator.bonny.run",
+    "names": {
+      "kind": "EvictionPolicy",
+      "plural": "evictionpolicies",
+      "shortNames": [
+        "ep"
+      ],
+      "singular": "evictionpolicy"
+    },
+    "scope": "Cluster",
+    "version": "v1"
+  }
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "k8s-app": "eviction-operator"
+    },
+    "name": "eviction-operator"
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        "apiextensions.k8s.io"
+      ],
+      "resources": [
+        "customresourcedefinitions"
+      ],
+      "verbs": [
+        "*"
+      ]
+    },
+    {
+      "apiGroups": [
+        "eviction-operator.example.com"
+      ],
+      "resources": [
+        "evictionpolicies"
+      ],
+      "verbs": [
+        "*"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "nodes"
+      ],
+      "verbs": [
+        "list"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "pods"
+      ],
+      "verbs": [
+        "list"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "pods/eviction"
+      ],
+      "verbs": [
+        "create"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "k8s-app": "eviction-operator"
+    },
+    "name": "eviction-operator",
+    "namespace": "default"
+  }
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "k8s-app": "eviction-operator"
+    },
+    "name": "eviction-operator"
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "eviction-operator"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "eviction-operator",
+      "namespace": "default"
+    }
+  ]
+}
