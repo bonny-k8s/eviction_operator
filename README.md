@@ -6,7 +6,8 @@ The main purpose of this operator is to allow pods that have been scheduled on _
 
 ## Installation
 
-- [ ] quay image link
+[eviction-operator Docker Image](https://quay.io/repository/bonny/eviction-operator)
+
 - [ ] configuration
 - [ ] kustomize yaml
 
