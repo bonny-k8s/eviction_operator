@@ -9,21 +9,12 @@ defmodule EvictionOperator.Controller.V1.EvictionPolicy do
     plural: "evictionpolicies",
     singular: "evictionpolicy",
     kind: "EvictionPolicy",
-    shortNames: ["ep"]
+    shortNames: []
   }
 
   @rule {"", ["nodes"], ["list"]}
   @rule {"", ["pods"], ["list"]}
   @rule {"", ["pods/eviction"], ["create"]}
-
-  @additional_printer_columns [
-    # %{
-    #   name: "test",
-    #   type: "string",
-    #   description: "test",
-    #   JSONPath: ".spec.test"
-    # }
-  ]
 
   @doc "Handles an `ADDED` event"
   @spec add(map()) :: :ok | :error

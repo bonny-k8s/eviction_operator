@@ -6,10 +6,11 @@ The main purpose of this operator is to allow pods that have been scheduled on _
 
 ## Installation
 
-[eviction-operator Docker Image](https://quay.io/repository/bonny/eviction-operator)
+```shell
+kubectl apply -f https://raw.githubusercontent.com/bonny-k8s/eviction_operator/master/manifest.yaml
+```
 
-- [ ] configuration
-- [ ] kustomize yaml
+This will deploy the latest kubernetes manifests running the [eviction-operator Docker Image](https://quay.io/repository/coryodaniel/eviction-operator).
 
 ## Usage
 

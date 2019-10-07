@@ -1,13 +1,23 @@
 REPO=quay.io/coryodaniel/eviction-operator
 
-build:
-	docker build . -t eviction-operator:$(shell make version)
+.PHONY: all
+all: docker k8s-manifest
 
-release:
-	# docker push current version
+.PHONY: docker
+docker: docker-build docker-push
 
-latest:
-	# woot
+.PHONY: docker-build
+docker-build:
+	docker build -t ${REPO}:latest -t ${REPO}:$(shell make version) .
+
+.PHONY: docker-push
+docker-push:
+	docker push ${REPO}:latest
+	docker push ${REPO}:$(shell make version)
+
+.PHONY: k8s-manifest
+k8s-manifest:
+	mix bonny.gen.manifest --image=${REPO}:$(shell make version)
 
 version:
 	@cat mix.exs | grep version | sed -e 's/.*version: "\(.*\)",/\1/'

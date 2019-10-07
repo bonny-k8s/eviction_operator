@@ -5,6 +5,7 @@ use Mix.Config
 config :logger, level: :info
 
 config :bonny,
+  group: "eviction-operator.bonny.run",
   controllers: [
     EvictionOperator.Controller.V1.EvictionPolicy
   ]
