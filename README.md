@@ -14,6 +14,8 @@ This will deploy the latest kubernetes manifests running the [eviction-operator 
 
 ## Usage
 
+__tl;dr__: A full example is [here](./test/example.yaml).
+
 This operator functions in two modes:
 
 - `all` will evict all matching pods no matter what node they are on
