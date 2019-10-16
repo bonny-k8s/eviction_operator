@@ -25,7 +25,8 @@ defmodule EvictionOperator.MixProject do
       {:bonny, "~> 0.4.0-rc3"},
       {:notion, "~> 0.2"},
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev, :test], runtime: false},
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false}
     ]
   end
 end
