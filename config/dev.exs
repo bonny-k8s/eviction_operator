@@ -5,6 +5,6 @@ config :logger, level: :debug
 config :k8s,
   clusters: %{
     default: %{
-      conf: "~/.kube/config"
+      conn: "~/.kube/config"
     }
   }
